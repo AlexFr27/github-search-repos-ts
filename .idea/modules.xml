@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/little-git.iml" filepath="$PROJECT_DIR$/.idea/little-git.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/github-search-repositories.iml" filepath="$PROJECT_DIR$/.idea/github-search-repositories.iml" />
     </modules>
   </component>
 </project>
