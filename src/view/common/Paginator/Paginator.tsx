@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './../../pages/MainPage.module.scss'
 
 type PropsType = {
     currentPage: number
@@ -16,14 +17,15 @@ export const Paginator: React.FC<PropsType> = ({totalCount, currentPage, onPageC
 
     const pagesMap = pages.map((page, index) => {
         return <div key={index} onClick={() => onPageChanged(page)} style={{
-            border: '1px solid grey',
-            padding: 2,
-            background: page === currentPage ? 'red' : "white"
+            margin: 5,
+            padding: 5,
+            borderRadius: 10,
+            background: page === currentPage ? 'rgb(253, 65, 65)' : "white"
         }}>{page}</div>
     })
 
     return (
-        <div style={{display: 'flex'}}>
+        <div className={style.paginatorWrapper}>
             {pagesMap}
         </div>
     );

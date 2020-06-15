@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {BrowserRouter, Route} from "react-router-dom";
 import MainPage from './view/pages/MainPage';
 import {RepoPage} from './view/pages/RepoPage';
@@ -11,8 +11,10 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <div className="App">
-                    <Route exact path={"/"} render={() => <MainPage/>}/>
-                    <Route exact path={"/repo/:ownerName/:repoName"} render={() => <RepoPage/>}/>
+                    <div className="container">
+                        <Route exact path={"/"} render={() => <MainPage/>}/>
+                        <Route exact path={"/repo/:ownerName/:repoName"} render={() => <RepoPage/>}/>
+                    </div>
                 </div>
             </BrowserRouter>
         </Provider>

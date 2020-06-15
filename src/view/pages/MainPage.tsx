@@ -1,12 +1,13 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import style from './MainPage.module.css';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from '../../redux/store';
-import {getRepos, LoadingStatusType, setCurrentPage, setSearchQuery} from '../../redux/reposReducer';
-import {RepoType} from '../../services/repo-service';
-import {Paginator} from '../common/Paginator/Paginator';
-import {NavLink, useHistory, useLocation} from 'react-router-dom';
-import {Search} from '../common/Search';
+import React, { useCallback, useEffect, useState } from 'react';
+import style from './MainPage.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppStateType } from '../../redux/store';
+import { getRepos, LoadingStatusType, setCurrentPage, setSearchQuery } from '../../redux/reposReducer';
+import { RepoType } from '../../services/repo-service';
+import { Paginator } from '../common/Paginator/Paginator';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import { Search } from '../common/Search';
+import logo from './../img/logo.png'
 
 const useQueryParams = () => {
     const location = useLocation();
@@ -51,24 +52,24 @@ function MainPage() {
     }, [currentPage, searchQuery])
 
     const setCurrentPageHandler = (page: number) => {
-        const clone = new  URLSearchParams(params.toString());
+        const clone = new URLSearchParams(params.toString());
         clone.set("page", page.toString());
         history.push({
-            search:  clone.toString()
+            search: clone.toString()
         })
         dispatch(setCurrentPage(page))
     }
 
     const repositoriesMap = repositories.map(repo => {
-        return <div style={{display: 'flex'}} key={repo.id}>
-            <div style={{margin: 5}}>
+        return <div className={style.repositories} key={repo.id}>
+            <div className={style.item}>
                 <NavLink to={`/repo/${repo.owner.login}/${repo.name}`}>{repo.full_name}</NavLink>
             </div>
-            <div style={{margin: 5}}>{repo.stargazers_count}</div>
-            <div style={{margin: 5}}>{repo.updated_at}</div>
-            <div style={{margin: 5}}> {repo.url}</div>
+            <div className={style.item}>{repo.stargazers_count}</div>
+            <div className={style.item}>{repo.updated_at}</div>
+            <div className={style.item}><a href={repo.html_url} target='_blank'>{repo.html_url}</a></div>
         </div>
-    }); 
+    });
 
     const [editMode, setEditMode] = useState(false);
 
@@ -81,15 +82,29 @@ function MainPage() {
     }, [dispatch]);
     return (
 
-        <div>
-            <div className={style.navigation}><h2>Hello guys</h2></div>
-            <Search value={searchQuery} onChange={onSearchQueryChanged} throttle={1000}/>
-            { loadingStatus === 'IN-PROGRESS' ? "loading..." : "" }
-            { loadingStatus === 'ERROR' && <div style={{border: "1px red solid"}}>{errorMessage}</div>  }
-            <div>
+        <div className={style.mainPage}>
+            <div className={style.header}>
+                <div className={style.logo}><img src={logo} alt=""/></div>
+                <h1>search for github repositories</h1>
+                <div className={style.searchWrapper}>
+                    <Search value={searchQuery} onChange={onSearchQueryChanged} throttle={1000} />
+                    <div className={style.loading}>
+                        {loadingStatus === 'IN-PROGRESS' ? "loading..." : ""}
+                        {loadingStatus === 'ERROR' && <div className={style.errorMsg}>{errorMessage}</div>}
+                    </div>
+                </div>
+            </div>
+
+            <div className={style.repoMap}>
+                <div className={style.repositoriesTitle}>
+                    <span>Name</span>
+                    <span>Stars</span>
+                    <span>Date of the last commit</span>
+                    <span>Link</span>
+                </div>
                 {repositoriesMap}
             </div>
-            <Paginator currentPage={currentPage} totalCount={totalCount} onPageChanged={setCurrentPageHandler}/>
+            <Paginator currentPage={currentPage} totalCount={totalCount} onPageChanged={setCurrentPageHandler} />
         </div>
     );
 }

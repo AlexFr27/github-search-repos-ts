@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useMemo, useState} from 'react';
-import style from '../pages/MainPage.module.css';
+import style from './../pages/MainPage.module.scss';
 import _ from 'lodash';
 
 type SearchPropsType = {
@@ -31,6 +31,6 @@ export const Search: React.FC<SearchPropsType> = (props) => {
     }
 
     return <div className={style.search}>
-        <input value={value} onChange={onChange}/>
+        <input placeholder={'Enter the name...'} value={value} onChange={onChange}/>
     </div>
 }
