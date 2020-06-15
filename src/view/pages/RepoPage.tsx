@@ -34,8 +34,9 @@ export const RepoPage = () => {
                             <div><span>Repo Name:</span><div className={style.item}>{repo.name}</div></div>
                             <div><span>Stars:</span><div className={style.item}>{repo.stargazers_count}</div></div>
                             <div><span>Last update:</span><div className={style.item}>{repo.updated_at}</div></div>
-                            <div><span>NickName:</span><div className={style.item}>{repo.owner.login}</div></div>
+                            <div><span>NickName:</span><div className={style.item}><a target='_blank' href={repo.owner.html_url}>{repo.owner.login}</a></div></div>
                             <div><span>Language:</span><div className={style.item}>{repo.language}</div></div>
+                            <div><span>About Repos: </span><div className={style.item}>{repo.description}</div></div>
                         </div>
 
                     </div>

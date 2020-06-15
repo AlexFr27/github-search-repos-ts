@@ -28,6 +28,7 @@ type RepoOwnerType = {
     "avatar_url": string
     "gravatar_id": string
     "url": string
+    "html_url":string
     "received_events_url": string
     "type": "User" | "Organization"
 }
