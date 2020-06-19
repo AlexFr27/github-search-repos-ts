@@ -71,7 +71,6 @@ function MainPage() {
         </div>
     });
 
-    const [editMode, setEditMode] = useState(false);
 
     const onSearchQueryChanged = useCallback((query: string) => {
         dispatch(setSearchQuery(query));
