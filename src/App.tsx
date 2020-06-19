@@ -12,7 +12,7 @@ function App() {
             <BrowserRouter>
                 <div className="App">
                     <div className="container">
-                        <Route exact path={"/"} render={() => <MainPage/>}/>
+                        <Route exact path={"/github-search-repos-ts"} render={() => <MainPage/>}/>
                         <Route exact path={"/repo/:ownerName/:repoName"} render={() => <RepoPage/>}/>
                     </div>
                 </div>
