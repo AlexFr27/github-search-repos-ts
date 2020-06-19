@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleRepo, getSingleRepoSuccess } from '../../redux/reposReducer';
 import { AppStateType } from '../../redux/store';
