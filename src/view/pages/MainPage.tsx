@@ -8,6 +8,7 @@ import { Paginator } from '../common/Paginator/Paginator';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { Search } from '../common/Search';
 import logo from './../img/logo.png'
+import preloader from '../../assets/images/preloader.gif'
 
 const useQueryParams = () => {
     const location = useLocation();
@@ -88,7 +89,7 @@ function MainPage() {
                 <div className={style.searchWrapper}>
                     <Search value={searchQuery} onChange={onSearchQueryChanged} throttle={1000} />
                     <div className={style.loading}>
-                        {loadingStatus === 'IN-PROGRESS' ? "loading..." : ""}
+                        {loadingStatus === 'IN-PROGRESS' ? <img src={preloader}/> : ""}
                         {loadingStatus === 'ERROR' && <div className={style.errorMsg}>{errorMessage}</div>}
                     </div>
                 </div>
